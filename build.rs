@@ -12,6 +12,10 @@ fn main() {
         .clang_args(&["-x", "c++"])
         .header("wrapper.h")
         .whitelist_type("sf::Clock")
+        .whitelist_function("sf::sleep")
+        .whitelist_function("sf::seconds")
+        .whitelist_function("sf::milliseconds")
+        .whitelist_function("sf::microseconds")
         .generate()
         .expect("Unable to generate bindings");
 

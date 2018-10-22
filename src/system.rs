@@ -28,6 +28,15 @@ impl Default for Time {
 }
 
 impl Time {
+    pub fn seconds(amount: f32) -> Self {
+        Time(unsafe { sf_seconds(amount) })
+    }
+    pub fn milliseconds(amount: i32) -> Self {
+        Time(unsafe { sf_milliseconds(amount) })
+    }
+    pub fn microseconds(amount: i64) -> Self {
+        Time(unsafe { sf_microseconds(amount) })
+    }
     pub fn as_seconds(&self) -> f32 {
         unsafe { self.0.asSeconds() }
     }
@@ -37,4 +46,8 @@ impl Time {
     pub fn as_microseconds(&self) -> i64 {
         unsafe { self.0.asMicroseconds() }
     }
+}
+
+pub fn sleep(duration: Time) {
+    unsafe { sf_sleep(duration.0) }
 }

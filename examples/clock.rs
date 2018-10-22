@@ -1,9 +1,9 @@
-use sfml_direct::system::{Clock, Time};
+use sfml_direct::system::{sleep, Clock, Time};
 
 fn main() {
     println!("Default time is {:?}", Time::default());
     let mut clock = Clock::default();
-    loop {
+    for i in 0.. {
         let t = clock.elapsed_time();
         println!(
             "{} : {} : {}",
@@ -15,6 +15,20 @@ fn main() {
             println!("Restarting clock...");
             clock.restart();
         }
-        std::thread::sleep(std::time::Duration::from_millis(250));
+        match i % 3 {
+            0 => {
+                println!("Sleeping 1.2 seconds");
+                sleep(Time::seconds(1.2));
+            }
+            1 => {
+                println!("Sleeping 500 milliseconds");
+                sleep(Time::milliseconds(500));
+            }
+            2 => {
+                println!("Sleeping 500 microseconds");
+                sleep(Time::microseconds(500));
+            }
+            _ => {}
+        }
     }
 }
