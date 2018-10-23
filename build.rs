@@ -16,6 +16,7 @@ fn main() {
         .whitelist_function("sf::seconds")
         .whitelist_function("sf::milliseconds")
         .whitelist_function("sf::microseconds")
+        .blacklist_item("sf::Time_Zero")
         .generate()
         .expect("Unable to generate bindings");
 
